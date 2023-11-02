@@ -9521,3 +9521,134 @@ Processing by Api::PokemonController#show as JSON
 Completed 200 OK in 5ms (Views: 2.8ms | ActiveRecord: 0.6ms | Allocations: 1834)
 
 
+Started GET "/" for 127.0.0.1 at 2023-11-02 16:46:49 -0400
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/robertlee/.rbenv/versions/3.1.1/lib/ruby/gems/3.1.0/gems/railties-7.0.8/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/robertlee/.rbenv/versions/3.1.1/lib/ruby/gems/3.1.0/gems/railties-7.0.8/lib/rails/templates/rails/welcome/index.html.erb (Duration: 0.9ms | Allocations: 583)
+Completed 200 OK in 643ms (Views: 3.0ms | ActiveRecord: 0.0ms | Allocations: 960683)
+
+
+Started GET "/" for ::1 at 2023-11-02 16:47:07 -0400
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/robertlee/.rbenv/versions/3.1.1/lib/ruby/gems/3.1.0/gems/railties-7.0.8/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/robertlee/.rbenv/versions/3.1.1/lib/ruby/gems/3.1.0/gems/railties-7.0.8/lib/rails/templates/rails/welcome/index.html.erb (Duration: 1.5ms | Allocations: 296)
+Completed 200 OK in 5ms (Views: 3.1ms | ActiveRecord: 0.0ms | Allocations: 1197)
+
+
+Started POST "/api/pokemon" for ::1 at 2023-11-02 16:47:30 -0400
+Processing by Api::PokemonController#create as JSON
+  Parameters: {"number"=>11, "attack"=>25, "defense"=>55, "imageUrl"=>"/images/pokemon_snaps/11.svg", "name"=>"Metapod", "type"=>"bug", "moves"=>["Tackle", "Harden"], "pokemon"=>{"number"=>11, "name"=>"Metapod", "attack"=>25, "defense"=>55}}
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 7.3ms | Allocations: 1572)
+
+
+
+NoMethodError - undefined method `call' for #<ActionController::Parameters {"number"=>11, "attack"=>25, "defense"=>55, "imageUrl"=>"/images/pokemon_snaps/11.svg", "name"=>"Metapod", "type"=>"bug", "moves"=>["Tackle", "Harden"], "format"=>:json, "controller"=>"api/pokemon", "action"=>"create", "pokemon"=>{"number"=>11, "name"=>"Metapod", "attack"=>25, "defense"=>55}} permitted: false>:
+  app/controllers/api/pokemon_controller.rb:31:in `pokemon_params'
+  app/controllers/api/pokemon_controller.rb:18:in `create'
+
+Started POST "/api/pokemon" for ::1 at 2023-11-02 16:48:02 -0400
+Processing by Api::PokemonController#create as JSON
+  Parameters: {"number"=>11, "attack"=>25, "defense"=>55, "imageUrl"=>"/images/pokemon_snaps/11.svg", "name"=>"Metapod", "type"=>"bug", "moves"=>["Tackle", "Harden"], "pokemon"=>{"number"=>11, "name"=>"Metapod", "attack"=>25, "defense"=>55}}
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/pokemon_controller.rb:19:in `create'
+  [1m[36mPokemon Exists? (4.7ms)[0m  [1m[34mSELECT 1 AS one FROM "pokemons" WHERE "pokemons"."number" = $1 LIMIT $2[0m  [["number", 11], ["LIMIT", 1]]
+  ↳ app/controllers/api/pokemon_controller.rb:19:in `create'
+  [1m[36mPokemon Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "pokemons" WHERE "pokemons"."name" = $1 LIMIT $2[0m  [["name", "Metapod"], ["LIMIT", 1]]
+  ↳ app/controllers/api/pokemon_controller.rb:19:in `create'
+  [1m[36mCACHE Pokemon Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "pokemons" WHERE "pokemons"."name" = $1 LIMIT $2[0m  [["name", "Metapod"], ["LIMIT", 1]]
+  ↳ app/controllers/api/pokemon_controller.rb:19:in `create'
+  [1m[36mCACHE Pokemon Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "pokemons" WHERE "pokemons"."number" = $1 LIMIT $2[0m  [["number", 11], ["LIMIT", 1]]
+  ↳ app/controllers/api/pokemon_controller.rb:19:in `create'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/pokemon_controller.rb:19:in `create'
+Completed 500 Internal Server Error in 26ms (ActiveRecord: 14.7ms | Allocations: 14694)
+
+
+
+NoMethodError - undefined method `errors' for nil:NilClass
+            render json: @pokemon.errors.full_messages
+                                 ^^^^^^^:
+  app/controllers/api/pokemon_controller.rb:22:in `create'
+
+Started POST "/api/pokemon" for ::1 at 2023-11-02 16:48:14 -0400
+Processing by Api::PokemonController#create as JSON
+  Parameters: {"number"=>11, "attack"=>25, "defense"=>55, "imageUrl"=>"/images/pokemon_snaps/11.svg", "name"=>"Metapod", "type"=>"bug", "moves"=>["Tackle", "Harden"], "pokemon"=>{"number"=>11, "name"=>"Metapod", "attack"=>25, "defense"=>55}}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/pokemon_controller.rb:19:in `create'
+  [1m[36mPokemon Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "pokemons" WHERE "pokemons"."number" = $1 LIMIT $2[0m  [["number", 11], ["LIMIT", 1]]
+  ↳ app/controllers/api/pokemon_controller.rb:19:in `create'
+  [1m[36mPokemon Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "pokemons" WHERE "pokemons"."name" = $1 LIMIT $2[0m  [["name", "Metapod"], ["LIMIT", 1]]
+  ↳ app/controllers/api/pokemon_controller.rb:19:in `create'
+  [1m[36mCACHE Pokemon Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "pokemons" WHERE "pokemons"."name" = $1 LIMIT $2[0m  [["name", "Metapod"], ["LIMIT", 1]]
+  ↳ app/controllers/api/pokemon_controller.rb:19:in `create'
+  [1m[36mCACHE Pokemon Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "pokemons" WHERE "pokemons"."number" = $1 LIMIT $2[0m  [["number", 11], ["LIMIT", 1]]
+  ↳ app/controllers/api/pokemon_controller.rb:19:in `create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/pokemon_controller.rb:19:in `create'
+Completed 200 OK in 9ms (Views: 0.3ms | ActiveRecord: 4.6ms | Allocations: 8838)
+
+
+Started POST "/api/pokemon?pokemon[number]=11&pokemon[attack]=25&pokemon[defense]=55&pokemon[imageUrl]=/images/pokemon_snaps/11.svg&pokemon[name]=Metapod&pokemon[type]=bug&pokemon[moves]=[Tackle]" for ::1 at 2023-11-02 16:50:36 -0400
+Processing by Api::PokemonController#create as JSON
+  Parameters: {"number"=>11, "attack"=>25, "defense"=>55, "imageUrl"=>"/images/pokemon_snaps/11.svg", "name"=>"Metapod", "type"=>"bug", "moves"=>["Tackle", "Harden"], "pokemon"=>{"number"=>"11", "attack"=>"25", "defense"=>"55", "imageUrl"=>"/images/pokemon_snaps/11.svg", "name"=>"Metapod", "type"=>"bug", "moves"=>"[Tackle]"}}
+[31mUnpermitted parameter: :imageUrl. Context: { controller: Api::PokemonController, action: create, request: #<ActionDispatch::Request:0x000000010d445990>, params: {"number"=>11, "attack"=>25, "defense"=>55, "imageUrl"=>"/images/pokemon_snaps/11.svg", "name"=>"Metapod", "type"=>"bug", "moves"=>["Tackle", "Harden"], "pokemon"=>{"number"=>"11", "attack"=>"25", "defense"=>"55", "imageUrl"=>"/images/pokemon_snaps/11.svg", "name"=>"Metapod", "type"=>"bug", "moves"=>"[Tackle]"}, "format"=>:json, "controller"=>"api/pokemon", "action"=>"create"} }[0m
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.0ms | Allocations: 1290)
+
+
+
+ActiveModel::UnknownAttributeError - unknown attribute 'type' for Pokemon.
+          raise UnknownAttributeError.new(self, k.to_s)
+          ^^^^^:
+  app/controllers/api/pokemon_controller.rb:18:in `create'
+
+Started POST "/api/pokemon?pokemon[number]=11&pokemon[attack]=25&pokemon[defense]=55&pokemon[imageUrl]=%22/images/pokemon_snaps/11.svg%22&pokemon[name]=%22Metapod%22&pokemon[type]=%22bug%22&pokemon[moves]=[%22Tackle%22]" for ::1 at 2023-11-02 16:51:05 -0400
+Processing by Api::PokemonController#create as JSON
+  Parameters: {"number"=>11, "attack"=>25, "defense"=>55, "imageUrl"=>"/images/pokemon_snaps/11.svg", "name"=>"Metapod", "type"=>"bug", "moves"=>["Tackle", "Harden"], "pokemon"=>{"number"=>"11", "attack"=>"25", "defense"=>"55", "imageUrl"=>"\"/images/pokemon_snaps/11.svg\"", "name"=>"\"Metapod\"", "type"=>"\"bug\"", "moves"=>"[\"Tackle\"]"}}
+[31mUnpermitted parameter: :imageUrl. Context: { controller: Api::PokemonController, action: create, request: #<ActionDispatch::Request:0x000000010d52e398>, params: {"number"=>11, "attack"=>25, "defense"=>55, "imageUrl"=>"/images/pokemon_snaps/11.svg", "name"=>"Metapod", "type"=>"bug", "moves"=>["Tackle", "Harden"], "pokemon"=>{"number"=>"11", "attack"=>"25", "defense"=>"55", "imageUrl"=>"\"/images/pokemon_snaps/11.svg\"", "name"=>"\"Metapod\"", "type"=>"\"bug\"", "moves"=>"[\"Tackle\"]"}, "format"=>:json, "controller"=>"api/pokemon", "action"=>"create"} }[0m
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.0ms | Allocations: 1161)
+
+
+
+ActiveModel::UnknownAttributeError - unknown attribute 'type' for Pokemon.
+          raise UnknownAttributeError.new(self, k.to_s)
+          ^^^^^:
+  app/controllers/api/pokemon_controller.rb:18:in `create'
+
+Started POST "/api/pokemon?pokemon[number]=11&pokemon[attack]=25&pokemon[defense]=55&pokemon[imageUrl]=%22/images/pokemon_snaps/11.svg%22&pokemon[name]=%22Metapod%22&pokemon[type]=%22bug%22&pokemon[moves]=[%22Tackle%22]" for ::1 at 2023-11-02 16:51:08 -0400
+Processing by Api::PokemonController#create as JSON
+  Parameters: {"number"=>11, "attack"=>25, "defense"=>55, "imageUrl"=>"/images/pokemon_snaps/11.svg", "name"=>"Metapod", "type"=>"bug", "moves"=>["Tackle", "Harden"], "pokemon"=>{"number"=>"11", "attack"=>"25", "defense"=>"55", "imageUrl"=>"\"/images/pokemon_snaps/11.svg\"", "name"=>"\"Metapod\"", "type"=>"\"bug\"", "moves"=>"[\"Tackle\"]"}}
+[31mUnpermitted parameter: :imageUrl. Context: { controller: Api::PokemonController, action: create, request: #<ActionDispatch::Request:0x000000010d705388>, params: {"number"=>11, "attack"=>25, "defense"=>55, "imageUrl"=>"/images/pokemon_snaps/11.svg", "name"=>"Metapod", "type"=>"bug", "moves"=>["Tackle", "Harden"], "pokemon"=>{"number"=>"11", "attack"=>"25", "defense"=>"55", "imageUrl"=>"\"/images/pokemon_snaps/11.svg\"", "name"=>"\"Metapod\"", "type"=>"\"bug\"", "moves"=>"[\"Tackle\"]"}, "format"=>:json, "controller"=>"api/pokemon", "action"=>"create"} }[0m
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms | Allocations: 1165)
+
+
+
+ActiveModel::UnknownAttributeError - unknown attribute 'type' for Pokemon.
+          raise UnknownAttributeError.new(self, k.to_s)
+          ^^^^^:
+  app/controllers/api/pokemon_controller.rb:18:in `create'
+
+Started POST "/api/pokemon?pokemon[number]=11&pokemon[attack]=25&pokemon[defense]=55&pokemon[imageUrl]=%22/images/pokemon_snaps/11.svg%22&pokemon[name]=%22Metapod%22&pokemon[poke_type]=%22bug%22&pokemon[moves]=[%22Tackle%22]" for ::1 at 2023-11-02 16:51:30 -0400
+Processing by Api::PokemonController#create as JSON
+  Parameters: {"number"=>11, "attack"=>25, "defense"=>55, "imageUrl"=>"/images/pokemon_snaps/11.svg", "name"=>"Metapod", "type"=>"bug", "moves"=>["Tackle", "Harden"], "pokemon"=>{"number"=>"11", "attack"=>"25", "defense"=>"55", "imageUrl"=>"\"/images/pokemon_snaps/11.svg\"", "name"=>"\"Metapod\"", "poke_type"=>"\"bug\"", "moves"=>"[\"Tackle\"]"}}
+[31mUnpermitted parameter: :imageUrl. Context: { controller: Api::PokemonController, action: create, request: #<ActionDispatch::Request:0x000000010d96dd50>, params: {"number"=>11, "attack"=>25, "defense"=>55, "imageUrl"=>"/images/pokemon_snaps/11.svg", "name"=>"Metapod", "type"=>"bug", "moves"=>["Tackle", "Harden"], "pokemon"=>{"number"=>"11", "attack"=>"25", "defense"=>"55", "imageUrl"=>"\"/images/pokemon_snaps/11.svg\"", "name"=>"\"Metapod\"", "poke_type"=>"\"bug\"", "moves"=>"[\"Tackle\"]"}, "format"=>:json, "controller"=>"api/pokemon", "action"=>"create"} }[0m
+Completed 500 Internal Server Error in 23ms (ActiveRecord: 8.1ms | Allocations: 11760)
+
+
+
+NoMethodError - undefined method `each' for "[\"Tackle\"]":String
+        other_array.each { |val| raise_on_type_mismatch!(val) }
+                   ^^^^^:
+  app/controllers/api/pokemon_controller.rb:18:in `create'
+
+Started POST "/api/pokemon?pokemon[number]=11&pokemon[attack]=25&pokemon[defense]=55&pokemon[imageUrl]=%22/images/pokemon_snaps/11.svg%22&pokemon[name]=%22Metapod%22&pokemon[poke_type]=%22bug%22&pokemon[moves]=[%22Tackle%22]" for ::1 at 2023-11-02 16:53:43 -0400
+Processing by Api::PokemonController#create as JSON
+  Parameters: {"number"=>11, "attack"=>25, "defense"=>55, "imageUrl"=>"/images/pokemon_snaps/11.svg", "name"=>"Metapod", "type"=>"bug", "moves"=>["Tackle", "Harden"], "pokemon"=>{"number"=>"11", "attack"=>"25", "defense"=>"55", "imageUrl"=>"\"/images/pokemon_snaps/11.svg\"", "name"=>"\"Metapod\"", "poke_type"=>"\"bug\"", "moves"=>"[\"Tackle\"]"}}
+[31mUnpermitted parameters: :imageUrl, :moves. Context: { controller: Api::PokemonController, action: create, request: #<ActionDispatch::Request:0x000000010de575c8>, params: {"number"=>11, "attack"=>25, "defense"=>55, "imageUrl"=>"/images/pokemon_snaps/11.svg", "name"=>"Metapod", "type"=>"bug", "moves"=>["Tackle", "Harden"], "pokemon"=>{"number"=>"11", "attack"=>"25", "defense"=>"55", "imageUrl"=>"\"/images/pokemon_snaps/11.svg\"", "name"=>"\"Metapod\"", "poke_type"=>"\"bug\"", "moves"=>"[\"Tackle\"]"}, "format"=>:json, "controller"=>"api/pokemon", "action"=>"create"} }[0m
+Completed 500 Internal Server Error in 13ms (ActiveRecord: 5.5ms | Allocations: 6960)
+
+
+
+ActiveRecord::AssociationTypeMismatch - Move(#20300) expected, got "Tackle" which is an instance of String(#2080):
+  app/controllers/api/pokemon_controller.rb:19:in `create'
+
